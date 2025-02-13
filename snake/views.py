@@ -2,5 +2,5 @@ from django.shortcuts import render
 from django.http import HttpResponse
 
 
-def home(request):
+def snake(request):
    return HttpResponse("Hello, gamers!")
