@@ -1,0 +1,14 @@
+{% extends "base.html" %}
+
+{% block content %}
+<div id="game-board">
+</div>
+<div>
+<div id="arrows">
+
+</div>
+<div id="score">
+    <h2>Score</h2>
+  </div>
+</div>
+{% endblock %}
