@@ -1,0 +1,95 @@
+.rubik-dirt-regular {
+    font-family: "Rubik Dirt", serif;
+    font-weight: 400;
+    font-style: normal;
+  }
+  
+  html, body {
+    background-color: black;
+}
+/*Header*/
+header{
+  background-color: #070707;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+#logo {
+  width: 80%; 
+  height: auto;
+  position: relative;
+  top: 20px;
+  left: 20px;
+}
+
+
+/*Main*/
+#game-board {
+  display: grid;
+  grid-template-columns: repeat(10, 1fr);
+  grid-template-rows: repeat(9, 1fr);
+  gap: 10px; /* Adjust the gap between grid items as needed */
+  background-color: #FFF1D0;
+  width: 90vmin; /* Ensure the game board is square */
+  height: 90vmin; /* Ensure the game board is square */
+  margin: 50px auto 0 auto; /* Center the game board */
+  
+}
+
+#score {
+  color: #5BE02F; 
+  background-color: #086788; 
+  padding: 5px;
+  border-radius: 10px; 
+  position: relative;;
+ 
+}
+
+#arrows {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  grid-template-rows: repeat(2, 1fr);
+  gap: 10px;
+  justify-items: center;
+  align-items: center;
+  width: 50px; /* Adjust the width as needed */
+  margin: 20px/* Center the arrows */
+}
+
+#arrows img {
+  width: 80px; /* Adjust the size of the arrow keys */
+  height: auto;
+}
+
+#arrows img:nth-child(1) {
+  grid-column: 2;
+  grid-row: 1;
+}
+
+#arrows img:nth-child(2) {
+  grid-column: 1;
+  grid-row: 2;
+}
+
+#arrows img:nth-child(3) {
+  grid-column: 2;
+  grid-row: 2;
+}
+
+#arrows img:nth-child(4) {
+  grid-column: 3;
+  grid-row: 2;
+}S
+
+/*Footer*/
+footer {
+  padding: 10px 10px;
+  font-size: 12px;
+  display: flex; /* Use flexbox to align items */
+  justify-content: center; /* Center the items horizontally */
+}
+
+footer div {
+  display: inline-block; /* Ensure each icon is treated as an inline block */
+}
