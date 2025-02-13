@@ -8,34 +8,41 @@
     background-color: black;
 }
 /*Header*/
+
+
+nav, #nav {
+  position: relative;
+  width: 100%;
+  height: 50px; 
+}
 #logo {
-  width: 80%; 
+  width: 70%; 
   height: auto;
   position: absolute;
-  top: 0;
-  left: 0;
+  top: 10px;
+  left: 15px; 
 }
-
 
 /*Main*/
 #game-board {
   display: grid;
   grid-template-columns: repeat(10, 1fr);
   grid-template-rows: repeat(9, 1fr);
-  gap: 10px; /* Adjust the gap between grid items as needed */
+  gap: 5px; 
   background-color: #FFF1D0;
-  width: 90vmin; /* Ensure the game board is square */
-  height: 90vmin; /* Ensure the game board is square */
-  margin: 100px auto 0 auto; /* Center the game board */
+  width: 80vmin; 
+  height: 80vmin; 
+  margin: 20px auto 0 auto; 
 }
 
 #score {
   color: #5BE02F; 
   background-color: #086788; 
-  padding: 5px;
+  padding: 2px 50px 2px 5px;
   border-radius: 10px; 
-  position: relative;;
- 
+  position: absolute;
+  right: 35px; 
+  
 }
 
 #arrows {
@@ -46,11 +53,12 @@
   justify-items: center;
   align-items: center;
   width: 50px; /* Adjust the width as needed */
-  margin: 20px/* Center the arrows */
+  margin: 35px 5px 5px 50px;/* Center the arrows */
+  
 }
 
 #arrows img {
-  width: 80px; /* Adjust the size of the arrow keys */
+  width: 60px; /* Adjust the size of the arrow keys */
   height: auto;
 }
 
@@ -79,10 +87,11 @@
 footer {
   padding: 10px 10px;
   font-size: 12px;
-  display: flex; /* Use flexbox to align items */
-  justify-content: center; /* Center the items horizontally */
+  display: flex; 
+  justify-content: center; 
+  position: sticky;
 }
 
 footer div {
-  display: inline-block; /* Ensure each icon is treated as an inline block */
+  display: inline-block; 
 }
