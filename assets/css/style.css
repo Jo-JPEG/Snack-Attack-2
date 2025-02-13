@@ -5,7 +5,7 @@
   }
   
   html, body {
-    background-color: black;
+    background-color: #3A2626;
 }
 /*Header*/
 
@@ -94,4 +94,14 @@ footer {
 
 footer div {
   display: inline-block; 
+}
+
+/* Media query for desktop screens */
+@media (min-width: 1024px) {
+  #logo {
+    width: 50%; /* Make the logo smaller on desktop screens */
+  }
+  #arrows {
+    display: none; /* Hide the arrows on desktop screens */
+  }
 }
