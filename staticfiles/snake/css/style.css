@@ -1,0 +1,33 @@
+.rubik-dirt-regular {
+    font-family: "Rubik Dirt", serif;
+    font-weight: 400;
+    font-style: normal;
+  }
+
+body {
+    background-color: black;
+}
+/*Header*/
+#logo {
+  width: 80%; 
+  height: auto;
+  position: absolute;
+  top: 0;
+  left: 0;
+}
+
+
+/*Main*/
+#game-board {
+  display: grid;
+  grid-template-columns: repeat(10, 1fr);
+  grid-template-rows: repeat(9, 1fr);
+  gap: 10px; /* Adjust the gap between grid items as needed */
+  background-color: #FFF1D0;
+  width: 90vmin; /* Ensure the game board is square */
+  height: 90vmin; /* Ensure the game board is square */
+  margin: 100px auto 0 auto; /* Center the game board */
+}
+
+
+/*Footer*/
