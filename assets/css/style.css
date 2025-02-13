@@ -86,14 +86,25 @@ nav, #nav {
 /*Footer*/
 footer {
   padding: 10px 10px;
-  font-size: 12px;
+  font-size: 24px;
   display: flex; 
   justify-content: center; 
-  position: sticky;
+  align-items: center;
+  position: absolute;
+  width: 100%; 
+  bottom: 0; 
+  gap: 40px; 
 }
 
 footer div {
-  display: inline-block; 
+  display: inline-block;
+  
+}
+
+footer p {
+  font-size: 10px;
+  color: #FFFFFF;
+  display: inline-block; /* Ensure the paragraph is inline */
 }
 
 /* Media query for desktop screens */
