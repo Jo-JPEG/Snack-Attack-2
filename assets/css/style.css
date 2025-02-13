@@ -101,4 +101,7 @@ footer div {
   #logo {
     width: 50%; /* Make the logo smaller on desktop screens */
   }
+  #arrows {
+    display: none; /* Hide the arrows on desktop screens */
+  }
 }
