@@ -115,30 +115,16 @@ nav,
 
 
 /*Footer*/
-footer {
-  padding: 10px 10px;
-  font-size: 24px;
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  position: relative;
-  width: 100%;
-  bottom: 0;
-  gap: 40px;
-  margin-top: 20px;
+.footer-links {
+  margin: 4px;
 }
 
-footer div {
-  display: inline-block;
-
-}
-
-footer p {
-  font-size: 10px;
+.footer-links a {
   color: #FFFFFF;
-  display: inline-block;
-  /* Ensure the paragraph is inline */
-}
+  text-decoration: none;
+  margin: 5px;
+  padding: 5px
+} 
 
 /* Media query for desktop screens */
 @media (min-width: 1024px) {
