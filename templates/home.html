@@ -1,7 +1,4 @@
 {% load static %}
-{% url 'account_login' as login_url %}
-{% url 'account_signup' as signup_url %}
-{% url 'account_logout' as logout_url %}
 <html lang="en">
   <head>
     <meta charset="UTF-8">
@@ -27,27 +24,32 @@
     <link rel="icon" href="{% static 'favicon_io/favicon.ico' %}" type="image/x-icon">
   </head>  
   <body>
-    <header>
-        <img src="{% static 'snake/images/gamebox.png' %}" alt="Gamebox Logo">
-    </header>     
-    <main>
-        <div class="col-lg-9 col-md-8 col-sm-12 mt-3 right">
-            <div class="row">
-                {% if game %}
-                    {% for game in game_list %}
-                    <div class="col-lg-4 col-md-6 col-sm-12">
-
-                    </div>
-                    {% endfor %}
-                {% else %}
-                    <div class="col-12">
-                        <div class="alert alert-warning" role="alert">
-                            Sorry, we don't have any games yet.
-                        </div>
-                    </div>
-                {% endif %}    
+    <main class="d-flex justify-content-center align-items-center flex-column"></main>
+      <img src="{% static 'snake/images/gamebox.png' %}" alt="Gamebox Logo" style="width: 70%; height: 20%;">
+      <div class="col-lg-9 col-md-8 col-sm-12 mt-3 right">
+        <div class="row justify-content-center">
+          {% if game_list %}
+            {% for game in game_list %}
+            <div class="col-lg-4 col-md-6 col-sm-12">
+              <div class="card">
+                <a href="{% url 'game_welcome' game.name %}">
+                  <img src="{{ game.image.url }}" class="card-img-top" alt="{{ game.name }}">
+                </a>
+                <div class="card-body">
+                  <h5 class="card-title">{{ game.name }}</h5>
+                </div>
+              </div>
             </div>
+            {% endfor %}
+          {% else %}
+            <div class="col-12">
+              <div class="alert alert-warning text-center" role="alert">
+                Sorry, we don't have any games yet.
+              </div>
+            </div>
+          {% endif %}    
         </div>
+      </div>
     </main>
     <footer class="bg-dark text-white fixed-bottom">
       <div class="footer-links">

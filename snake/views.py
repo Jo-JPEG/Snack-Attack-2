@@ -1,4 +1,4 @@
-from django.shortcuts import render, redirect
+from django.shortcuts import render, render, get_object_or_404, redirect
 from django.contrib.auth.decorators import login_required
 from django.views.decorators.csrf import csrf_exempt
 from django.http import JsonResponse
@@ -50,4 +50,10 @@ def tictactoe(request):
     return render(request, 'snake/tictactoe.html')
 
 def home(request):
-    return render(request, 'home.html')
+    games = Game.objects.all()
+    return render(request, 'home.html', {'game_list': games})
+
+def game_welcome(request, game_name):
+    game = get_object_or_404(Game, name=game_name)
+    template_name = f'{game_name.lower()}/index.html'
+    return render(request, template_name, {'game': game})
