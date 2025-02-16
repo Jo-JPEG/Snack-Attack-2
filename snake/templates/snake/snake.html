@@ -3,12 +3,16 @@
 {% block content %}
 <div id="container" class="row">
     <div id="sidebar" class="col-md-3 col-lg-3 d-none d-md-block">
-        <ul id="leaderboard" style="border: 2px solid green; padding: 10px;">
+        <div id="leaderboard" style="border: 2px solid green; padding: 10px; margin-left: 10px;">
             <h2>Leaderboard</h2>
-            <li>Player 1: 100</li>
-            <li>Player 2: 90</li>
-            <li>Player 3: 80</li>
-        </ul>
+            {% if leaderboard %}
+            {% for player in leaderboard %}
+            <div style="padding: 5px; margin-bottom: 5px;" class="{% cycle 'bg-lightgrey' 'bg-white' %}">
+            {{ player.name }}: {{ player.score }}
+            </div>
+            {% endfor %}
+            {% endif %}
+        </div>
     </div>
     <div id="game-container" class="col-12 col-md-6 col-lg-6 text-center">
         <canvas id="game-board"></canvas>

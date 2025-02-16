@@ -27,7 +27,7 @@ document.addEventListener("DOMContentLoaded", () => {
 
     function draw() {
         ctx.clearRect(0, 0, canvas.width, canvas.height);
-
+        drawGrid();
         // Draw Snake
         snake.forEach((segment, index) => {
             ctx.fillStyle = index === 0 ? "#00FF00" : "#32CD32"; // Head is a different shade
@@ -56,6 +56,28 @@ document.addEventListener("DOMContentLoaded", () => {
         checkCollision();
     }
 
+    function drawGrid() {
+        for (let i = 0; i < rows; i++) {
+            for (let j = 0; j < cols; j++) {
+                ctx.fillStyle = (i + j) % 2 === 0 ? "#FFFFFF" : "#DDDDDD"; // Alternate colors for each box
+                ctx.fillRect(j * boxSize, i * boxSize, boxSize, boxSize);
+            }
+        }
+        ctx.strokeStyle = "#333"; // Darker grid line color
+        for (let i = 0; i <= rows; i++) {
+            ctx.beginPath();
+            ctx.moveTo(0, i * boxSize);
+            ctx.lineTo(canvas.width, i * boxSize);
+            ctx.stroke();
+        }
+        for (let j = 0; j <= cols; j++) {
+            ctx.beginPath();
+            ctx.moveTo(j * boxSize, 0);
+            ctx.lineTo(j * boxSize, canvas.height);
+            ctx.stroke();
+        }
+    }
+    drawGrid();
     function moveSnake() {
         let head = { ...snake[0] };
 
@@ -110,13 +132,30 @@ document.addEventListener("DOMContentLoaded", () => {
             }
         }
     }
-
+    function showAlert(message) {
+        const alertBox = document.createElement('div');
+        alertBox.textContent = message;
+        alertBox.style.position = 'fixed';
+        alertBox.style.top = '50%';
+        alertBox.style.left = '50%';
+        alertBox.style.transform = 'translate(-50%, -50%)';
+        alertBox.style.padding = '20px';
+        alertBox.style.backgroundColor = 'white';
+        alertBox.style.color = 'black';
+        alertBox.style.border = '1px solid black';
+        alertBox.style.zIndex = '1000';
+        document.body.appendChild(alertBox);
+    
+        setTimeout(() => {
+            document.body.removeChild(alertBox);
+        }, 2000);
+    }
     function gameOver() {
         clearInterval(gameInterval);
         isRunning = false;
         startStopButton.innerText = "Start";
 
-        alert("Game Over! Your score: " + score);
+        showAlert("Game Over! Your score: " + score);
 
         if (score > highScore) {
             highScore = score;
