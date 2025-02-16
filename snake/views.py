@@ -2,7 +2,7 @@ from django.shortcuts import render, redirect
 from django.http import HttpResponse, JsonResponse
 from django.contrib.auth.decorators import login_required
 from django.views.decorators.csrf import csrf_exempt
-from .models import Game, Score, Leaderboard
+from .models import Game, Leaderboard
 
 def index(request):
     return render(request, 'snake/index.html')
@@ -28,3 +28,6 @@ def leaderboard(request):
 @login_required
 def tictactoe(request):
     return render(request, 'snake/tictactoe.html')
+
+def home(request):
+    return render(request, 'home.html')
