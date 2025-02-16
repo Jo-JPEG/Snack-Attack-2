@@ -48,6 +48,7 @@ INSTALLED_APPS = [
     'allauth.account',
     'allauth.socialaccount',
     'snake',
+    'tictactoe',
 ]
 
 SITE_ID = 1
