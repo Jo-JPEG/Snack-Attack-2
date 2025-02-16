@@ -30,7 +30,12 @@
             <h2>High Score: <span id="high-score">0</span></h2>
         </div>        
         <h2 class="start-button">Time Left: <span id="timer">10</span>s</h2>
-        
+        <!-- Score submission form -->
+        <form id="score-form" method="post" action="{% url 'submit_score' %}">
+            {% csrf_token %}
+            <input type="hidden" name="score" id="score-input">
+            <button type="submit" class="start-button">Submit Score</button>
+        </form>
     </div>
 </div>
 <!-- Audio elements for sound effects -->

@@ -5,6 +5,8 @@ document.addEventListener("DOMContentLoaded", () => {
     const scoreElement = document.getElementById("score");
     const highScoreElement = document.getElementById("high-score");
     const timerElement = document.getElementById("timer");
+    const scoreForm = document.getElementById("score-form");
+    const scoreInput = document.getElementById("score-input");
 
     // Sound elements
     const turnSound = document.getElementById("turn-sound");
@@ -173,7 +175,29 @@ document.addEventListener("DOMContentLoaded", () => {
             highScoreElement.innerText = highScore;
         }
 
+        // Ensure score is set before submitting the form
+        if (scoreInput) {
+            scoreInput.value = score;
+            scoreForm.submit();
+        }
+
         resetGame();
+    }
+
+    // Helper function to get CSRF token from cookies
+    function getCookie(name) {
+        let cookieValue = null;
+        if (document.cookie && document.cookie !== '') {
+            const cookies = document.cookie.split(';');
+            for (let i = 0; i < cookies.length; i++) {
+                const cookie = cookies[i].trim();
+                if (cookie.substring(0, name.length + 1) === (name + '=')) {
+                    cookieValue = decodeURIComponent(cookie.substring(name.length + 1));
+                    break;
+                }
+            }
+        }
+        return cookieValue;
     }
 
     function resetGame() {
