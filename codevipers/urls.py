@@ -23,4 +23,5 @@ urlpatterns = [
     path("accounts/", include("allauth.urls")),
     path('', home, name='home'),  # Set home view as the landing page
     path('tictactoe/', include('tictactoe.urls')),
+    path('snake/', include('snake.urls')),  # Include snake app URLs
 ]
