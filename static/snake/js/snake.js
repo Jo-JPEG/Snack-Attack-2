@@ -6,6 +6,11 @@ document.addEventListener("DOMContentLoaded", () => {
     const highScoreElement = document.getElementById("high-score");
     const timerElement = document.getElementById("timer");
 
+    // Sound elements
+    const turnSound = document.getElementById("turn-sound");
+    const gameOverSound = document.getElementById("game-over-sound");
+    const foodSound = document.getElementById("food-sound");
+
     // Set canvas dimensions dynamically
     const boxSize = 20; // Grid cell size
     const rows = 20;
@@ -27,7 +32,7 @@ document.addEventListener("DOMContentLoaded", () => {
 
     function draw() {
         ctx.clearRect(0, 0, canvas.width, canvas.height);
-
+        drawGrid();
         // Draw Snake
         snake.forEach((segment, index) => {
             ctx.fillStyle = index === 0 ? "#00FF00" : "#32CD32"; // Head is a different shade
@@ -56,6 +61,29 @@ document.addEventListener("DOMContentLoaded", () => {
         checkCollision();
     }
 
+    function drawGrid() {
+        for (let i = 0; i < rows; i++) {
+            for (let j = 0; j < cols; j++) {
+                ctx.fillStyle = (i + j) % 2 === 0 ? "#FFFFFF" : "#DDDDDD"; // Alternate colors for each box
+                ctx.fillRect(j * boxSize, i * boxSize, boxSize, boxSize);
+            }
+        }
+        ctx.strokeStyle = "#333"; // Darker grid line color
+        for (let i = 0; i <= rows; i++) {
+            ctx.beginPath();
+            ctx.moveTo(0, i * boxSize);
+            ctx.lineTo(canvas.width, i * boxSize);
+            ctx.stroke();
+        }
+        for (let j = 0; j <= cols; j++) {
+            ctx.beginPath();
+            ctx.moveTo(j * boxSize, 0);
+            ctx.lineTo(j * boxSize, canvas.height);
+            ctx.stroke();
+        }
+    }
+    drawGrid();
+
     function moveSnake() {
         let head = { ...snake[0] };
 
@@ -83,6 +111,7 @@ document.addEventListener("DOMContentLoaded", () => {
             speed = Math.max(50, speed - 5); // Speed up the game slightly
             clearInterval(gameInterval);
             gameInterval = setInterval(draw, speed);
+            foodSound.play(); // Play food sound
         } else {
             snake.pop(); // Remove last tail segment
         }
@@ -111,12 +140,32 @@ document.addEventListener("DOMContentLoaded", () => {
         }
     }
 
+    function showAlert(message) {
+        const alertBox = document.createElement('div');
+        alertBox.textContent = message;
+        alertBox.style.position = 'fixed';
+        alertBox.style.top = '50%';
+        alertBox.style.left = '50%';
+        alertBox.style.transform = 'translate(-50%, -50%)';
+        alertBox.style.padding = '20px';
+        alertBox.style.backgroundColor = 'white';
+        alertBox.style.color = 'black';
+        alertBox.style.border = '1px solid black';
+        alertBox.style.zIndex = '1000';
+        document.body.appendChild(alertBox);
+    
+        setTimeout(() => {
+            document.body.removeChild(alertBox);
+        }, 2000);
+    }
+
     function gameOver() {
         clearInterval(gameInterval);
         isRunning = false;
         startStopButton.innerText = "Start";
 
-        alert("Game Over! Your score: " + score);
+        showAlert("Game Over! Your score: " + score);
+        gameOverSound.play(); // Play game over sound
 
         if (score > highScore) {
             highScore = score;
@@ -168,17 +217,26 @@ document.addEventListener("DOMContentLoaded", () => {
     }
 
     document.addEventListener("keydown", (event) => {
-        if (event.key === "ArrowUp" && direction !== "DOWN") direction = "UP";
-        else if (event.key === "ArrowDown" && direction !== "UP") direction = "DOWN";
-        else if (event.key === "ArrowLeft" && direction !== "RIGHT") direction = "LEFT";
-        else if (event.key === "ArrowRight" && direction !== "LEFT") direction = "RIGHT";
+        if (event.key === "ArrowUp" && direction !== "DOWN") {
+            direction = "UP";
+            turnSound.play(); // Play turn sound
+        } else if (event.key === "ArrowDown" && direction !== "UP") {
+            direction = "DOWN";
+            turnSound.play(); // Play turn sound
+        } else if (event.key === "ArrowLeft" && direction !== "RIGHT") {
+            direction = "LEFT";
+            turnSound.play(); // Play turn sound
+        } else if (event.key === "ArrowRight" && direction !== "LEFT") {
+            direction = "RIGHT";
+            turnSound.play(); // Play turn sound
+        }
     });
 
     // Mobile Controls
-    document.getElementById("up").addEventListener("click", () => { if (direction !== "DOWN") direction = "UP"; });
-    document.getElementById("down").addEventListener("click", () => { if (direction !== "UP") direction = "DOWN"; });
-    document.getElementById("left").addEventListener("click", () => { if (direction !== "RIGHT") direction = "LEFT"; });
-    document.getElementById("right").addEventListener("click", () => { if (direction !== "LEFT") direction = "RIGHT"; });
+    document.getElementById("up").addEventListener("click", () => { if (direction !== "DOWN") direction = "UP"; turnSound.play(); });
+    document.getElementById("down").addEventListener("click", () => { if (direction !== "UP") direction = "DOWN"; turnSound.play(); });
+    document.getElementById("left").addEventListener("click", () => { if (direction !== "RIGHT") direction = "LEFT"; turnSound.play(); });
+    document.getElementById("right").addEventListener("click", () => { if (direction !== "LEFT") direction = "RIGHT"; turnSound.play(); });
 
     startStopButton.addEventListener("click", toggleGame);
 });
