@@ -21,4 +21,5 @@ urlpatterns = [
     path('admin/', admin.site.urls),
     path("accounts/", include("allauth.urls")),
     path('', include('snake.urls')),  # Include the snake app's URLs
+    path('tictactoe/', include('tictactoe.urls')),
 ]
