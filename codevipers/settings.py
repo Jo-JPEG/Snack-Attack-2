@@ -59,8 +59,8 @@ AUTHENTICATION_BACKENDS = (
 
 LOGOUT_REDIRECT_URL = '/'
 LOGIN_REDIRECT_URL = '/'
-ACCOUNT_AUTHENTICATION_METHOD = 'username'
-
+# ACCOUNT_AUTHENTICATION_METHOD = 'username'
+ACCOUNT_LOGIN_METHODS = {'username'}
 
 MIDDLEWARE = [
     'django.middleware.security.SecurityMiddleware',

@@ -1,0 +1,26 @@
+{% extends "base.html" %}
+{% load static %}
+{% block content %}
+<div class="container">
+    <h2>TicTacToe</h2>
+    <div id="tictactoe-board" class="tictactoe-board">
+        <div class="row">
+            <div class="cell" data-cell></div>
+            <div class="cell" data-cell></div>
+            <div class="cell" data-cell></div>
+        </div>
+        <div class="row">
+            <div class="cell" data-cell></div>
+            <div class="cell" data-cell></div>
+            <div class="cell" data-cell></div>
+        </div>
+        <div class="row">
+            <div class="cell" data-cell></div>
+            <div class="cell" data-cell></div>
+            <div class="cell" data-cell></div>
+        </div>
+    </div>
+    <button id="restartButton" class="btn btn-primary">Restart</button>
+</div>
+<script src="{% static 'snake/js/tictactoe.js' %}"></script>
+{% endblock %}
