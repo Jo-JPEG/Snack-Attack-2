@@ -1,0 +1,26 @@
+{% extends "base.html" %}
+{% block content %}
+<div class="container">
+    <h2>Snake Leaderboard</h2>
+    <table class="table">
+        <thead>
+            <tr>
+                <th>Rank</th>
+                <th>Player</th>
+                <th>Game</th>
+                <th>Score</th>
+            </tr>
+        </thead>
+        <tbody>
+            {% for score in leaderboard %}
+            <tr>
+                <td>{{ forloop.counter }}</td>
+                <td>{{ score.user.username }}</td>
+                <td>{{ score.game }}</td>
+                <td>{{ score.highest_score }}</td>
+            </tr>
+            {% endfor %}
+        </tbody>
+    </table>
+</div>
+{% endblock %}

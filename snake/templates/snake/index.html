@@ -1,13 +1,29 @@
 {% extends "base.html" %}
+{% load static %}
 
 {% block content %}
-<h1>WELCOME TO SNAKE GAME</h1>
-<a href="{% url 'snake' %}">Play now</a>
-<p>
-  How to play:
-  <ul>
-    <li>Use arrow keys to move the snake</li>
-    <li>Collect the food to grow the snake</li>
-    <li>Don't hit the walls or yourself</li>
-</p>
+<div id="index">
+  <div id="welcome-message">
+      <p >Welocome to Snack Attack! 
+      Its a game where you have to direct the snake to collect the red dots. 
+      As the red dots are collected the snake grows bigger!
+      The game is over when the snake hits the wall or itself. Good luck!
+      </p>
+      <p>
+        How to play:<br>
+          1. Use arrow keys to move the snake<br>
+          2. Collect the food to grow the snake<br>
+          3. Don't hit the walls or yourself<br>
+      </p>
+      <div id="button">
+          <a href="{% url 'snake' %}">
+              <button class="start-button">Start Game</button>
+          </a>
+      </div>
+      
+  </div>
+</div>
 {% endblock %}
+
+
+  

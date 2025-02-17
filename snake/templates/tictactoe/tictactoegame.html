@@ -1,0 +1,131 @@
+{% extends "tictactoebase.html" %}
+{% load static %}
+{% block content %}
+<div id="container" class="row">
+    <div id="sidebar" class="col-md-3 col-lg-3 d-none d-md-block">
+        <!-- Score section -->
+        <div class="container mt-3">
+            <div class="row justify-content-center">
+                <div class="col-12 col-md-8 col-lg-6">
+                    <div id="score-section" class="score-section">
+                        <div class="row">
+    
+                            <div class="col-12">
+    
+                                <h2 class="fw-bold">Player 1</h2>
+    
+                                <div class="d-flex justify-content-between">
+    
+                                    <p>Wins: <span id="player1-wins">0</span></p>
+    
+                                    <p>Losses: <span id="player1-losses">0</span></p>
+    
+                                    <p>Draws: <span id="player1-draws">0</span></p>
+    
+                                </div>
+    
+                            </div>
+    
+                            <div class="col-12 mt-3">
+    
+                                <h2 class="fw-bold">Player 2</h2>
+    
+                                <div class="d-flex justify-content-between">
+    
+                                    <p>Wins: <span id="player2-wins">0</span></p>
+    
+                                    <p>Losses: <span id="player2-losses">0</span></p>
+    
+                                    <p>Draws: <span id="player2-draws">0</span></p>
+    
+                                </div>
+    
+                            </div>
+    
+                        </div>
+    
+    
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div id="game-container" class="col-12 col-md-6 col-lg-6 text-center">
+            <!-- Game board -->
+        <div class="row justify-content-center pb-2">
+            <div class="col-12 col-md-8 col-lg-6">
+                <div id="game-board" class="game-board">
+                    <div class="row no-gutters">
+                        <div class="col cell" data-cell></div>
+                        <div class="col cell" data-cell></div>
+                        <div class="col cell" data-cell></div>
+                    </div>
+                    <div class="row">
+                        <div class="col cell" data-cell></div>
+                        <div class="col cell" data-cell></div>
+                        <div class="col cell" data-cell></div>
+                    </div>
+                    <div class="row">
+                        <div class="col cell" data-cell></div>
+                        <div class="col cell" data-cell></div>
+                        <div class="col cell" data-cell></div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div> 
+    <div id="score-panel" class="col-12 col-md-3 col-lg-3">
+        <div class="text-center mt-3">
+            <span id="player-turn">Player turn: X</span>
+        </div>  
+        <!-- Game buttons -->
+        <div id="buttonsection" class="mt-3 text-center mb-5">
+            <button class="btn btn-primary me-2" id="new-game">New Game</button>
+            <button class="btn btn-secondary" id="player-mode">Player Mode</button>
+        </div>
+    
+    
+        <!-- Game messages -->
+        <div id="win-message" class="d-none">Player Wins!</div>
+    </div>    
+</div>
+<!-- Player Names Modal -->
+<div class="modal fade" id="playerNamesModal" tabindex="-1" aria-labelledby="playerNamesModalLabel"
+    aria-hidden="true">
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title" id="playerNamesModalLabel">Enter Player Names</h5>
+                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+            </div>
+            <div class="modal-body">
+                <form id="playerNamesForm">
+                    <div class="mb-3">
+                        <label for="player1Name" class="form-label">Player 1 Name</label>
+                        <input type="text" class="form-control" id="player1Name" required>
+                    </div>
+                    <div class="mb-3">
+                        <label class="form-label">Player 2</label>
+                        <div class="form-check">
+                            <input class="form-check-input" type="radio" name="player2Option" id="playWithComputer"
+                                value="computer" required>
+                            <label class="form-check-label" for="playWithComputer">Play with Computer</label>
+                        </div>
+                        <div class="form-check">
+                            <input class="form-check-input" type="radio" name="player2Option" id="enterPlayer2Name"
+                                value="player2" required>
+                            <label class="form-check-label" for="enterPlayer2Name">Enter Player 2 Name</label>
+                        </div>
+                    </div>
+                    <div class="mb-3" id="player2NameContainer" style="display: none;">
+                        <label for="player2Name" class="form-label">Player 2 Name</label>
+                        <input type="text" class="form-control" id="player2Name">
+                    </div>
+                    <button type="submit" class="btn btn-primary">Start Game</button>
+                </form>
+            </div>
+        </div>
+    </div>
+</div>
+<script src="{% static 'snake/js/tictac.js' %}"></script>
+{% endblock %}

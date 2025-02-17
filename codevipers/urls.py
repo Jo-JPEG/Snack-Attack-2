@@ -16,8 +16,11 @@ Including another URLconf
 """
 from django.contrib import admin
 from django.urls import path, include
+from snake.views import home  # Import the home view
 
 urlpatterns = [
     path('admin/', admin.site.urls),
-    path('', include('snake.urls')),  # Include the snake app's URLs
+    path("accounts/", include("allauth.urls")),
+    path('', home, name='home'),  # Set home view as the landing page
+    path('snake/', include('snake.urls')),  # Include snake app URLs
 ]

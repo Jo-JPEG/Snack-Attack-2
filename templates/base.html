@@ -1,4 +1,7 @@
 {% load static %}
+{% url 'account_login' as login_url %}
+{% url 'account_signup' as signup_url %}
+{% url 'account_logout' as logout_url %}
 <html lang="en">
   <head>
     <meta charset="UTF-8">
@@ -21,57 +24,87 @@
     <link rel="stylesheet" href="{% static 'snake/css/style.css' %}">
 
     <!-- Favicon -->
-    <link rel="apple-touch-icon" sizes="180x180" href="assets/images/apple-touch-icon.png">
-    <link rel="icon" type="image/png" sizes="32x32" href="assets/images/favicon-32x32.png">
-    <link rel="icon" type="image/png" sizes="16x16" href="assets/images/favicon-16x16.png">
-    <link rel="icon" type="image/png" sizes="192x192" href="assets/images/android-chrome-192x192.png">
-    <link rel="icon" type="image/png" sizes="512x512" href="assets/image/android-chrome-512x512.png">
-<body>
-  <header>
-    <nav class="navbar">
-      <div id="nav">
-        <a href="index.html">
-          <img id="logo" src="assets/images/logo.png"
-              alt="The snack attack logo" class="me-2" href="index.html">
-        </a>
-        <div class="dropdown">
-          <button class="dropbtn"><i class="fa-solid fa-bars" style="color: #ffffff;"></i>
+    <link rel="icon" href="{% static 'favicon_io/favicon.ico' %}" type="image/x-icon">
+  </head>  
+  <body>
+    <header>
+      <nav class="navbar navbar-expand-lg navbar-dark bg-dark">
+        <div class="container-fluid">
+          <a class="navbar-brand" href="{% url 'index' %}">
+            <img src="{% static 'snake/images/logo.webp' %}" alt="The snack attack logo" id="logo" class="d-inline-block align-text-top">
+          </a>
+          <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
+            <span class="navbar-toggler-icon"></span>
           </button>
-          <div class="dropdown-content">
-            <a href="#">Sign in!</a>
-            <a href="#">Sign up!</a>
+          <div class="collapse navbar-collapse" id="navbarNav">
+            <ul class="navbar-nav ms-auto">
+              <li class="nav-item">
+                <a class="nav-link" href="{% url 'index' %}">Home</a>
+              </li>
+              <li class="nav-item">
+                <a class="nav-link" href="{% url 'home' %}">Index</a>
+              </li>
+              <li class="nav-item">
+                <a class="nav-link" href="{% url 'leaderboard' %}">Leaderboard</a>
+              </li>
+              {% if user.is_authenticated %}
+              <li class="nav-item">
+              	<a class="nav-link {% if request.path == logout_url %}active{% endif %}" aria-current="page" href="{% url 'account_logout' %}">Logout</a>
+              </li>
+              {% else %}
+              <li class="nav-item">
+              	<a class="nav-link {% if request.path == signup_url %}active{% endif %}" aria-current="page"
+              		href="{% url 'account_signup' %}">Register</a>
+              </li>
+              <li class="nav-item">
+              	<a class="nav-link {% if request.path == login_url %}active{% endif %}" aria-current="page" href="{% url 'account_login' %}">Login</a>
+              </li>
+              {% endif %}
+            </ul>
           </div>
+        </div>
+      </nav>
+    </header>     
+    <main class="mb-5">
+      {% block content %} {% endblock %}
+    </main>
+    <footer class="bg-dark text-white fixed-bottom">
+      <div class="footer-links">
+        <p class="m-0 text-center text-white">
+          Made by The Code Vipers: 
+        
+          <a id="jo" href="https://github.com/Jo-JPEG" target="_blank">Jo 
+            <i class="fa-brands fa-github" style="color: #ffffff;"></i>
+          </a>
+          <a id="harmeet" href="https://github.com/Harmeetkaur13" target="_blank">Harmeet 
+            <i class="fa-brands fa-github" style="color: #ffffff;"></i>
+          </a>
+          <a id="grace" href="https://github.com/Gracey46" target="_blank">Grace 
+            <i class="fa-brands fa-github" style="color: #ffffff;"></i>
+          </a>
+          </p>
       </div>
-  </nav>    
-  </header>
-  <main>
-    {% block content %} {% endblock %}
-    
-  </main>
-
-  <footer>
-    <a id="jo" href="https://github.com/Jo-JPEG" target="_blank">
-      <i class="fa-brands fa-github" style="color: #ffffff;"></i>
-    </a>
-    <a id="harmeet" href="https://github.com/Harmeetkaur13" target="_blank">
-      <i class="fa-brands fa-github" style="color: #ffffff;"></i>
-    </a>
-    <a id="grace" href="https://github.com/Gracey46" target="_blank">
-      <i class="fa-brands fa-github" style="color: #ffffff;"></i>
-    </a>
-    <div id="copyright">
-      <i class="fa-solid fa-copyright" style="color: #ffffff;"></i>
-      <p>2025</p>
+        <p class="m-0 text-center text-white">&copy; Snack Attack 2025. All rights reserved.</p>
+    </footer>
+    <!--Bootstrap-->
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"
+    integrity="sha384-YvpcrYf0tY3lHB60NNkmXc5s9fDVZLESaAA55NDzOxhy9GkcIdslK1eN7N6jIeHz" crossorigin="anonymous">
+    </script>
+    <!-- popup messages -->
+    {% if messages %}
+    <div id="popup-message" class="popup">
+        {% for message in messages %}
+            <p>{{ message }}</p>
+        {% endfor %}
+        <button id="popup-close">OK</button>
     </div>
-      </footer>
-   <!--Bootstrap-->
-   <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"
-   integrity="sha384-YvpcrYf0tY3lHB60NNkmXc5s9fDVZLESaAA55NDzOxhy9GkcIdslK1eN7N6jIeHz" crossorigin="anonymous">
-</script>
+    <div id="overlay" class="overlay"></div>
+    {% endif %}
+    <script src="{% static 'snake/js/popup.js' %}"></script>
 
-<!--Fontawesome-->
-<script src="https://kit.fontawesome.com/6117eac69e.js" crossorigin="anonymous"></script>
-</body>
+    <!--Fontawesome-->
+    <script src="https://kit.fontawesome.com/6117eac69e.js" crossorigin="anonymous"></script>
+  </body>
 </html>
 
 
