@@ -8,7 +8,12 @@ def index(request):
     return render(request, 'snake/index.html')
 
 def snake(request):
-    return render(request, 'snake/snake.html')
+    # Fetch top 10 scores per game
+    leaderboard_data = (
+        Leaderboard.objects.order_by('-highest_score')
+        .select_related('user', 'game')[:10]
+    )
+    return render(request, 'snake/snake.html', {'leaderboard': leaderboard_data})
 
 @login_required
 @csrf_exempt
@@ -28,9 +33,11 @@ def submit_score(request):
 
         # Update leaderboard
         leaderboard_entry, created = Leaderboard.objects.get_or_create(user=user, game=game)
-        if created or session.score > leaderboard_entry.highest_score:
+        if created:
             leaderboard_entry.highest_score = session.score
-            leaderboard_entry.save()
+        elif session.score > leaderboard_entry.highest_score:
+            leaderboard_entry.highest_score = session.score
+        leaderboard_entry.save()
 
         return redirect('leaderboard')  # Redirect to the leaderboard page
 

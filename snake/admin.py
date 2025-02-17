@@ -18,6 +18,6 @@ class GameSessionAdmin(admin.ModelAdmin):
 
 @admin.register(Leaderboard)
 class LeaderboardAdmin(admin.ModelAdmin):
-    list_display = ('user', 'game', 'highest_score', 'ranking')
+    list_display = ('user', 'game', 'highest_score')
     list_filter = ('game',)
     search_fields = ('user__username', 'game__name')
