@@ -147,6 +147,7 @@ function showAlert(message) {
     alertBox.style.transform = 'translate(-50%, -50%)';
     alertBox.style.padding = '20px';
     alertBox.style.backgroundColor = 'white';
+    alertBox.style.color = 'black';
     alertBox.style.border = '1px solid black';
     alertBox.style.zIndex = '1000';
     document.body.appendChild(alertBox);
