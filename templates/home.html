@@ -1,7 +1,4 @@
 {% load static %}
-{% url 'account_login' as login_url %}
-{% url 'account_signup' as signup_url %}
-{% url 'account_logout' as logout_url %}
 <html lang="en">
   <head>
     <meta charset="UTF-8">
@@ -27,47 +24,32 @@
     <link rel="icon" href="{% static 'favicon_io/favicon.ico' %}" type="image/x-icon">
   </head>  
   <body>
-    <header>
-      <nav class="navbar navbar-expand-lg navbar-dark bg-dark">
-        <div class="container-fluid">
-          <a class="navbar-brand" href="{% url 'index' %}">
-            <img src="{% static 'snake/images/logo.webp' %}" alt="The snack attack logo" id="logo" class="d-inline-block align-text-top">
-          </a>
-          <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
-            <span class="navbar-toggler-icon"></span>
-          </button>
-          <div class="collapse navbar-collapse" id="navbarNav">
-            <ul class="navbar-nav ms-auto">
-              <li class="nav-item">
-                <a class="nav-link" href="{% url 'index' %}">Home</a>
-              </li>
-              <li class="nav-item">
-                <a class="nav-link" href="{% url 'home' %}">Index</a>
-              </li>
-              <li class="nav-item">
-                <a class="nav-link" href="{% url 'leaderboard' %}">Leaderboard</a>
-              </li>
-              {% if user.is_authenticated %}
-              <li class="nav-item">
-              	<a class="nav-link {% if request.path == logout_url %}active{% endif %}" aria-current="page" href="{% url 'account_logout' %}">Logout</a>
-              </li>
-              {% else %}
-              <li class="nav-item">
-              	<a class="nav-link {% if request.path == signup_url %}active{% endif %}" aria-current="page"
-              		href="{% url 'account_signup' %}">Register</a>
-              </li>
-              <li class="nav-item">
-              	<a class="nav-link {% if request.path == login_url %}active{% endif %}" aria-current="page" href="{% url 'account_login' %}">Login</a>
-              </li>
-              {% endif %}
-            </ul>
-          </div>
+    <main class="d-flex justify-content-center align-items-center flex-column"></main>
+      <img src="{% static 'snake/images/gamebox.png' %}" alt="Gamebox Logo" style="width: 70%; height: 20%;">
+      <div class="col-lg-9 col-md-8 col-sm-12 mt-3 right">
+        <div class="row justify-content-center">
+          {% if game_list %}
+            {% for game in game_list %}
+            <div class="col-lg-4 col-md-6 col-sm-12">
+              <div class="card">
+                <a href="{% url 'game_welcome' game.name %}">
+                  <img src="{{ game.image.url }}" class="card-img-top" alt="{{ game.name }}">
+                </a>
+                <div class="card-body">
+                  <h5 class="card-title">{{ game.name }}</h5>
+                </div>
+              </div>
+            </div>
+            {% endfor %}
+          {% else %}
+            <div class="col-12">
+              <div class="alert alert-warning text-center" role="alert">
+                Sorry, we don't have any games yet.
+              </div>
+            </div>
+          {% endif %}    
         </div>
-      </nav>
-    </header>     
-    <main>
-      {% block content %} {% endblock %}
-      
+      </div>
     </main>
     <footer class="bg-dark text-white fixed-bottom">
       <div class="footer-links">
@@ -107,6 +89,3 @@
     <script src="https://kit.fontawesome.com/6117eac69e.js" crossorigin="anonymous"></script>
   </body>
 </html>
-
-
- 

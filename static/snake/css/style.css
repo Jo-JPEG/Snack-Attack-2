@@ -195,6 +195,13 @@ li {
   /* Initially hidden */
 }
 
+/* form to submit score */
+#score-form {
+  display: none;
+
+}
+
+
 @media screen and (max-width: 650px) {
   #logo {
     width: 150px;

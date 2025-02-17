@@ -14,6 +14,7 @@
             {% endif %}
         </div>
     </div>
+    {% if user.is_authenticated %}
     <div id="game-container" class="col-12 col-md-6 col-lg-6 text-center">
         <canvas id="game-board"></canvas>
         <div id="arrows">
@@ -30,8 +31,18 @@
             <h2>High Score: <span id="high-score">0</span></h2>
         </div>        
         <h2 class="start-button">Time Left: <span id="timer">10</span>s</h2>
-        
+        <!-- Score submission form -->
+        <form id="score-form" method="post" action="{% url 'submit_score' %}">
+            {% csrf_token %}
+            <input type="hidden" name="score" id="score-input">
+            <button type="submit" class="start-button">Submit Score</button>
+        </form>
     </div>
+    {% else %}
+    <div class="col-12 text-center">
+        <p>Please <a href="{% url 'login' %}">log in</a> to play the game.</p>
+    </div>
+    {% endif %}
 </div>
 <!-- Audio elements for sound effects -->
 <audio id="turn-sound" src="{% static 'snake/sounds/turn.wav' %}" preload="auto"></audio>
