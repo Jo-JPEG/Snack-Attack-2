@@ -270,49 +270,6 @@ li {
   box-sizing: border-box;
 }
 
-/* Mobile devices */
-@media (max-width: 320px) {
-
-  /* Header section*/
-  .header {
-      height: 50px;
-  }
-
-  #player-turn {
-      height: 50px;
-  }
-
-  .header h1 {
-      font-size: 1.2rem;
-  }
-
-  .score-section {
-      margin-bottom: 1px;
-      font-size: 0.8rem;
-      display: flex;
-      justify-content: space-around;
-      align-items: center;
-      width: 60%;
-      margin-left: 60px;
-  }
-
-  .score-section .col {
-      text-align: center;
-  }
-
-  /* Game board section */
-  .game-board {
-      margin-top: 1px;
-      margin-bottom: 0%;
-  }
-
-  .cell {
-      height: 80px;
-      font-size: 1.5rem;
-      border: 2px solid red;
-  }
-
-
 @media screen and (max-width: 650px) {
   #logo {
     width: 150px;
