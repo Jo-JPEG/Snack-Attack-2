@@ -219,7 +219,6 @@ li {
 
 /* tictactoe  */
 
-
 #playerNamesModal {
   color: black;
 }
@@ -281,8 +280,6 @@ li {
     height: 50px;
   }
 
-
-
   /*Footer*/
   footer {
     height: 70px;
@@ -329,3 +326,38 @@ li {
     display: none;
   }
 }
+
+/* Desktop devices */
+@media (min-width: 1600px) {
+
+  /* Score section */
+  .score-section {
+      padding: 5px;
+      font-size: 1.5rem;
+      width: 400px;
+      margin: 0 auto;
+      margin-bottom: 1px;
+      margin-top: 50px;
+  }
+
+  .score-section .col {
+      text-align: center;
+  }
+
+  .score-section .d-flex {
+      justify-content: space-evenly;
+  }
+
+  /* Game board section */
+  #tic-tac-toe-game-board {
+      margin-top: 5%;
+      margin-left: 5%;
+      padding: 5px;
+      width: 90%;
+  }
+
+  .cell {
+      height: 180px;
+      font-size: 3.5rem;
+      border: 5px solid red;
+  }
