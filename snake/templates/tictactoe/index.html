@@ -1,0 +1,26 @@
+{% extends "tictactoebase.html" %}
+{% load static %}
+
+{% block content %}
+<div id="index">
+  <div id="welcome-message">
+    <p>Welcome to Tic Tac Toe! 
+    It's a game where you have to get three of your marks in a row to win. 
+    You can play against another player or the computer. Good luck!
+    </p>
+    <p>
+      How to play:<br>
+        1. Click on a square to place your mark<br>
+        2. Get three of your marks in a row to win<br>
+        3. Block your opponent from getting three in a row<br>
+    </p>
+      </p>
+      <div id="button">
+          <a href="{% url 'tictactoe' %}">
+              <button class="start-button">Start Game</button>
+          </a>
+      </div>
+      
+  </div>
+</div>
+{% endblock %}

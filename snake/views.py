@@ -15,6 +15,11 @@ def snake(request):
     )
     return render(request, 'snake/snake.html', {'leaderboard': leaderboard_data})
 
+
+@login_required
+def tictactoe(request):
+    return render(request, 'tictactoe/tictactoegame.html')
+
 @login_required
 @csrf_exempt
 def submit_score(request):
@@ -52,9 +57,6 @@ def leaderboard(request):
     )
     return render(request, 'snake/leaderboard.html', {'leaderboard': leaderboard_data})
 
-@login_required
-def tictactoe(request):
-    return render(request, 'snake/tictactoe.html')
 
 def home(request):
     games = Game.objects.all()
