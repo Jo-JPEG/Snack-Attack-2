@@ -163,7 +163,6 @@ li {
   padding: 50px;
 }
 
-
 .popup {
   position: fixed;
   top: 50%;
@@ -218,7 +217,59 @@ li {
 
 }
 
+/* tictactoe  */
 
+
+#playerNamesModal {
+  color: black;
+}
+
+
+#player-turn {
+  font-size: larger;
+  font-weight: bold;
+  z-index: 2;
+  border: 2px solid #DEE2E6;
+  border-radius: 5px;
+  padding: 10px;
+}
+
+/* Score section */
+.score-section {
+  border: 2px solid #DEE2E6;
+  padding: 10px;
+  margin-bottom: 20px;
+  text-align: center;
+}
+
+.score-section .row {
+  margin-bottom: 10px;
+}
+
+.score-section .col {
+  padding: 5px;
+}
+/* Game board */
+
+#tic-tac-toe-game-board {
+  padding: 20px;
+  max-width: 100%;
+  box-sizing: border-box;
+  margin-top: 20%;
+  background-color: black;
+}
+
+.cell {
+  height: 100px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  font-size: 2rem;
+  font-weight: bold;
+  cursor: pointer;
+  border: 3px solid red;
+  box-sizing: border-box;
+}
 
 @media screen and (max-width: 650px) {
   #logo {
@@ -256,7 +307,20 @@ li {
     width: 70%;
     height: 70%;
   }
+
+  /* Game board section */
+  #tic-tac-toe-game-board {
+    margin-top: 1px;
+    margin-bottom: 0%;
 }
+
+  .cell {
+    height: 80px;
+    font-size: 1.5rem;
+}
+}
+
+
 
 /* Media query for desktop screens */
 @media (min-width: 1024px) {
