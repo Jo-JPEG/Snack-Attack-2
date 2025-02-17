@@ -46,6 +46,23 @@ nav,
   text-decoration: none;
 }
 
+.navbar-collapse {
+  background-color: rgba(0, 0, 0, 0.8);
+  /* Semi-transparent background */
+  padding: 1rem;
+}
+
+.navbar-nav .nav-item {
+  margin-bottom: 0.2rem;
+  /* Reduce the gap between options */
+}
+
+.navbar-nav .nav-link {
+  padding: 0.5rem 1rem;
+  /* Adjust padding for nav links */
+}
+
+
 /*Game board*/
 #game-board {
   background-color: #FFF1D0;
@@ -202,16 +219,42 @@ li {
 }
 
 
+
 @media screen and (max-width: 650px) {
   #logo {
     width: 150px;
     margin-top: 20px;
-
   }
 
   nav {
     height: 50px;
+  }
 
+
+
+  /*Footer*/
+  footer {
+    height: 70px;
+  }
+
+  footer p {
+    font-size: 12px;
+  }
+
+  .footer-links {
+    margin: 2px;
+  }
+
+  .footer-links a {
+    color: #FFFFFF;
+    text-decoration: none;
+    margin: 5px;
+    padding: 5px;
+  }
+
+  .homecard {
+    width: 70%;
+    height: 70%;
   }
 }
 
