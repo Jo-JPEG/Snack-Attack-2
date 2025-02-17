@@ -7,6 +7,9 @@ from .models import Game, GameSession, Leaderboard
 def index(request):
     return render(request, 'snake/index.html')
 
+def tictacindex(request):
+    return render(request, 'tictactoe/index.html')
+
 def snake(request):
     # Fetch top 10 scores per game
     leaderboard_data = (
