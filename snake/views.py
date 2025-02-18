@@ -10,6 +10,7 @@ def index(request):
 def tictacindex(request):
     return render(request, 'tictactoe/index.html')
 
+@login_required
 def snake(request):
     # Fetch top 10 scores per game
     leaderboard_data = (
